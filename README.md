@@ -88,15 +88,16 @@ plt.title("Box Plot of Numerical Columns")
 plt.show()
 ```
 
-Original Count: 541909
+Original Count: **541909**
 
-Count after dealing with negative values: 530104
+Count after dealing with negative values: **530104**
 
-Count after dealing with missing values: 397884
+Count after dealing with missing values: **397884**
 
-Count after dealing with duplicates rows: 392692
+Count after dealing with duplicates rows: **392692**
 
 ![image](https://github.com/user-attachments/assets/84c06d75-2c18-4bd9-b9da-84aac056b33d)
+
 We proceed to remove rows with negative values in `Quantity` or `Unitprice`, we removed rows with missing `CustomerID` value and also removed duplicate rows. After cleaning the Dataframe,
 the boxplot shows a good dataframe shape!
 
@@ -113,7 +114,8 @@ no_outliers_df.info()
 no_outliers_df.describe()
 ```
 ![image](https://github.com/user-attachments/assets/a093b245-1be5-4419-b34a-1baa393e58dd)
-We proceed to remove outliers below 1st percentile and above 99th percentile. Dataframe count 392692 reduced to 382280. Now we have a clean dataset ready for analysis.
+
+We proceed to remove outliers below 1st percentile and above 99th percentile. Dataframe count reduced from **392692** to **382280**. 
 
 ```python
 no_outliers_df[['Quantity', 'UnitPrice']].boxplot()
@@ -121,9 +123,10 @@ plt.title("Box Plot of Numerical Columns")
 plt.show()
 ```
 ![image](https://github.com/user-attachments/assets/dd344747-be85-4b48-a23d-bd8a77884589)
+
 Boxplot now shows very close values for `Quantity` and `Unitprice`.
 
-## 4b. Data Formating
+## 5. Data Formating
 ```python
 df1 = no_outliers_df.drop(['StockCode'], axis=1) # Drop Irrelevant "StockCode" column
 df1 = df1.rename(columns={'Description': 'Product_Description'}) # Rename "Description" column
@@ -132,7 +135,122 @@ df1['Month_Name'] = df1['InvoiceDate'].dt.month_name() # Adding "Month_Name" col
 df1['CustomerID'] = df1['CustomerID'].astype(int) # Converting "CustomerID" column to integer
 df1.head()
 ```
-![image](https://github.com/user-attachments/assets/5460c019-b9d9-46d6-ab74-c411adcdc2c6)
+![image](https://github.com/user-attachments/assets/5f6d719d-34b7-4682-9a38-c86dc58965d1)
 
-As we have `Product_Description`, we dont need `StockCode` (Product Code), We add `TotalSales` and `Month_Name` columns and convert `CustomerID` values to integer.
+As we have `Product_Description`, we do not need `StockCode` (Product Code), we then add `TotalSales` and `Month_Name` columns and convert `CustomerID` values to integer. Now we have a clean Dataframe ready for analysis.
+
+## 6a. Analizing the Data (Sales Summary)
+```python
+total_sales = df1["TotalSales"].sum() # Total Sales
+total_transactions = df1["InvoiceNo"].nunique() # Total number of transactions
+avg_order_value = total_sales / total_transactions # Average order value
+
+print(f"Total Sales: ${total_sales:,.2f}")
+print(f"Total Transactions: {total_transactions}")
+print(f"Average Order Value: ${avg_order_value:,.2f}")
+```
+Total Sales: **$6,883,273.81**
+
+Total Transactions: **17972**
+
+Average Order Value: **$383.00**
+
+## 6b. Analizing the Data (Customer Analysis)
+```python
+# Top 10 customers by total sales
+top_countries = df1.groupby('CustomerID')['TotalSales'].sum().nlargest(10)
+
+# Create plot
+plt.figure(figsize=(10, 5))
+ax = top_countries.plot(kind='bar', color='lightcoral', edgecolor='black')
+
+# Add labels and title
+plt.xlabel('CustomerID', fontsize=12)
+plt.ylabel('Total Sales', fontsize=12)
+plt.title('Top 10 Customers by Total Sales', fontsize=14)
+plt.xticks(rotation=45, ha='right')
+
+# Format Y-axis to show normal numbers (no scientific notation)
+ax.yaxis.set_major_formatter(mticker.StrMethodFormatter('{x:,.0f}'))  # Adds commas for large numbers
+
+# Add grid
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/9541194b-9b45-42e3-b2a6-bc93ad0c082a)
+
+## 6c. Analizing the Data (Best-Selling Products)
+```python
+# Top 10 Selling Products by Quantity Sold
+top_products = df1.groupby('Product_Description')['Quantity'].sum().nlargest(10)
+
+# Create plot
+plt.figure(figsize=(10, 5))
+ax = top_products.plot(kind='bar', color='lightcoral', edgecolor='black')
+
+# Add labels and title
+plt.xlabel('Product Description', fontsize=12)
+plt.ylabel('Quantity Sold', fontsize=12)
+plt.title('Top 10 Best-Selling Products', fontsize=14)
+plt.xticks(rotation=45, ha='right')
+
+# Format Y-axis to show normal numbers (no scientific notation)
+ax.yaxis.set_major_formatter(mticker.StrMethodFormatter('{x:,.0f}'))  # Adds commas for large numbers
+
+# Add grid
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/5f3cb5e5-b784-4aef-87cd-f34218cd3780)
+
+## 6d. Analizing the Data (Sales by Country)
+```python
+# Top 10 countries by total sales
+top_countries = df1.groupby('Country')['TotalSales'].sum().nlargest(10)
+
+# Create plot
+plt.figure(figsize=(10, 5))
+ax = top_countries.plot(kind='bar', color='lightcoral', edgecolor='black')
+
+# Add labels and title
+plt.xlabel('Country', fontsize=12)
+plt.ylabel('Total Sales', fontsize=12)
+plt.title('Top 10 Countries by Total Sales', fontsize=14)
+plt.xticks(rotation=45, ha='right')
+
+# Format Y-axis to show normal numbers (no scientific notation)
+ax.yaxis.set_major_formatter(mticker.StrMethodFormatter('{x:,.0f}'))  # Adds commas for large numbers
+
+# Add grid
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/61f23de0-2123-415d-8c75-f6582340dbcc)
+
+## 6e. Analizing the Data (Sales Trend over Time)
+```python
+# Top 10 countries by total sales
+top_countries = df1.groupby('Month_Name')['TotalSales'].sum().nlargest(12)
+
+# Create plot
+plt.figure(figsize=(10, 5))
+ax = top_countries.plot(kind='bar', color='lightcoral', edgecolor='black')
+
+# Add labels and title
+plt.xlabel('Month', fontsize=12)
+plt.ylabel('Total Sales', fontsize=12)
+plt.title('Sales Trend Over Time', fontsize=14)
+plt.xticks(rotation=45, ha='right')
+
+# Format Y-axis to show normal numbers (no scientific notation)
+ax.yaxis.set_major_formatter(mticker.StrMethodFormatter('{x:,.0f}'))  # Adds commas for large numbers
+
+# Add grid
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/a5c99a59-611d-4e25-a3f9-cdc9a0c924cb)
+
+## 7. Findings and Conclusions
+
 
