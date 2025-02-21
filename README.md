@@ -15,7 +15,7 @@ This project is done on Jupyter Notebook (`omedina_online_retail.ipynb`) uploade
 
 ## Dataset
 
-The dataset contains all the transactional data of an UK-based online retail store from 2010 to 2011. The dataset is included as `Online Retail.xlsx` uploaded to this repository. 
+The dataset contains all the transactional data of an **UK-based** online retail store from 2010 to 2011. The dataset is included as `Online Retail.xlsx` uploaded to this repository. 
 
 The dataset contains the following columns:
 
@@ -252,5 +252,45 @@ plt.show()
 ![image](https://github.com/user-attachments/assets/a5c99a59-611d-4e25-a3f9-cdc9a0c924cb)
 
 ## 7. Findings and Conclusions
+
+# 1. Sales Summary
+-✅ Total Revenue ($6,883,273.81): The company has generated significant revenue.
+-✅ Average Order Value (AOV) ($383.00): Shows how much customers typically spend per transaction.
+-✅ Total Transactions (17972): Helps measure sales activity and business performance.
+
+ If AOV is low, consider upselling or bundling products.
+ Increasing transaction volume can improve overall revenue.
+
+# 2. Customer Analysis
+- ✅ Total Unique Customers (4290): Helps understand customer base size.
+- ✅ Top 10 Customers: A small percentage of customers that contribute to a large portion of sales.
+  
+ Focus on customer retention by offering loyalty programs or discounts.
+ Identify high-value customers for personalized marketing.
+
+## 3. Product Performance
+- ✅ Best-Selling Products: Some products drive most of the revenue.
+- ✅ Least-Selling Products: These may need discounts or promotions.
+
+📌 Conclusion:
+
+Stock up on best-selling products to avoid stockouts.
+Consider removing or repackaging slow-moving items.
+📌 4. Geographic Analysis
+✅ Top Countries by Sales: Some regions outperform others.
+✅ Low-Sales Regions: Need targeted marketing or expansion efforts.
+
+📌 Conclusion:
+
+Invest more in high-performing markets.
+Improve marketing in underperforming regions to boost sales.
+📌 5. Sales Trends Over Time
+✅ Seasonal Trends: Sales may peak during specific months (e.g., holidays).
+✅ Declining Sales Periods: Can indicate low customer demand.
+
+📌 Conclusion:
+
+Plan marketing campaigns around high-sales seasons.
+Offer discounts or promotions during slow months to maintain revenue.
 
 
