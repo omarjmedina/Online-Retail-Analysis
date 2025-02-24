@@ -207,7 +207,7 @@ plt.show()
 ```
 ![image](https://github.com/user-attachments/assets/5f3cb5e5-b784-4aef-87cd-f34218cd3780)
 
-## 6d. Analizing the Data (Sales by Country)
+## 6d. Analizing the Data (Total Sales by Country)
 ```python
 # Top 10 countries by total sales
 top_countries = df1.groupby('Country')['TotalSales'].sum().nlargest(10)
