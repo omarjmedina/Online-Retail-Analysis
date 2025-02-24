@@ -144,16 +144,20 @@ As we have `Product_Description`, we do not need `StockCode` (Product Code), we 
 total_sales = df1["TotalSales"].sum() # Total Sales
 total_transactions = df1["InvoiceNo"].nunique() # Total number of transactions
 avg_order_value = total_sales / total_transactions # Average order value
+total_unique_customers = df1["CustomerID"].nunique() # Total number of unique Customers
 
 print(f"Total Sales: ${total_sales:,.2f}")
 print(f"Total Transactions: {total_transactions}")
 print(f"Average Order Value: ${avg_order_value:,.2f}")
+print(f"Total Unique Customers: {total_unique_customers}")
 ```
 Total Sales: **$6,883,273.81**
 
 Total Transactions: **17972**
 
 Average Order Value: **$383.00**
+
+Total Unique Customers: **4290**
 
 ## 6b. Analizing the Data (Customer Analysis)
 ```python
@@ -251,46 +255,45 @@ plt.show()
 ```
 ![image](https://github.com/user-attachments/assets/a5c99a59-611d-4e25-a3f9-cdc9a0c924cb)
 
-## 7. Findings and Conclusions
+## 7. Findings and Recommendations
 
-# 1. Sales Summary
--✅ Total Revenue ($6,883,273.81): The company has generated significant revenue.
--✅ Average Order Value (AOV) ($383.00): Shows how much customers typically spend per transaction.
--✅ Total Transactions (17972): Helps measure sales activity and business performance.
+### 1. Sales Summary
+- ✅ `Total Revenue ($6,883,273.81):` The company has generated significant revenue.
+- ✅ `Average Order Value (AOV) ($383.00):` Shows how much customers typically spend per transaction.
+- ✅ `Total Transactions (17972):` Helps measure sales activity and business performance.
 
- If AOV is low, consider upselling or bundling products.
- Increasing transaction volume can improve overall revenue.
+📌 **Recommendations:**
+ - If AOV is low, consider upselling or bundling products.
+ - Increasing transaction volume can improve overall revenue.
 
-# 2. Customer Analysis
-- ✅ Total Unique Customers (4290): Helps understand customer base size.
-- ✅ Top 10 Customers: A small percentage of customers that contribute to a large portion of sales.
-  
- Focus on customer retention by offering loyalty programs or discounts.
- Identify high-value customers for personalized marketing.
+### 2. Customer Analysis
+- ✅ `Total Unique Customers (4290):` Helps understand customer base size.
+- ✅ `Top 10 Customers:` A small percentage of customers that contribute to a large portion of sales.
 
-## 3. Product Performance
-- ✅ Best-Selling Products: Some products drive most of the revenue.
-- ✅ Least-Selling Products: These may need discounts or promotions.
+📌 **Recommendations:**
+ - Focus on customer retention by offering loyalty programs or discounts.
+ - Identify high-value customers for personalized marketing.
 
-📌 Conclusion:
+### 3. Product Performance
+- ✅ `Best-Selling Products:` Products that drive most of the revenue.
+- ✅ `Least-Selling Products:` These may need discounts or promotions.
 
-Stock up on best-selling products to avoid stockouts.
-Consider removing or repackaging slow-moving items.
-📌 4. Geographic Analysis
-✅ Top Countries by Sales: Some regions outperform others.
-✅ Low-Sales Regions: Need targeted marketing or expansion efforts.
+📌 **Recommendations:**
+ - Stock up on best-selling products to avoid stockouts.
+ - Consider removing or repackaging slow-moving items.
 
-📌 Conclusion:
+### 4. Geographic Analysis
+- ✅ `Top Countries by Sales:` Some regions outperform others, in this case UK.
+- ✅ `Low-Sales Regions:` Need targeted marketing or expansion efforts.
 
-Invest more in high-performing markets.
-Improve marketing in underperforming regions to boost sales.
-📌 5. Sales Trends Over Time
-✅ Seasonal Trends: Sales may peak during specific months (e.g., holidays).
-✅ Declining Sales Periods: Can indicate low customer demand.
+📌 **Recommendations:**
+ - Invest more in high-performing markets.
+ - Improve marketing in underperforming regions to boost sales.
 
-📌 Conclusion:
+### 5. Sales Trends Over Time
+- ✅ `Seasonal Trends:` Sales may peak during specific months (e.g., holidays). November on this case (Black Friday)
+- ✅ `Declining Sales Periods:` Can indicate low customer demand.
 
-Plan marketing campaigns around high-sales seasons.
-Offer discounts or promotions during slow months to maintain revenue.
-
-
+📌 **Recommendations:**
+- Plan marketing campaigns around high-sales seasons.
+- Offer discounts or promotions during slow months to maintain revenue.
