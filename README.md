@@ -283,7 +283,7 @@ plt.show()
  - Consider removing or repackaging slow-moving items.
 
 ### 4. Geographic Analysis
-- ✅ `Top Countries by Sales:` Some regions outperform others, in this case UK.
+- ✅ `Top Countries by Sales:` Some regions outperform others, in this case `UK` outperform all countries.
 - ✅ `Low-Sales Regions:` Need targeted marketing or expansion efforts.
 
 📌 **Recommendations:**
@@ -291,7 +291,7 @@ plt.show()
  - Improve marketing in underperforming regions to boost sales.
 
 ### 5. Sales Trends Over Time
-- ✅ `Seasonal Trends:` Sales may peak during specific months (e.g., holidays). November on this case (Black Friday)
+- ✅ `Seasonal Trends:` Sales may peak during specific months (e.g., holidays). In this case `November` (Black Friday) outperform all months.
 - ✅ `Declining Sales Periods:` Can indicate low customer demand.
 
 📌 **Recommendations:**
